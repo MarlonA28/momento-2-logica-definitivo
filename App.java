@@ -11,11 +11,12 @@ public class App {
         String nombreProducto;
         double costoProducto;
         double totalCostos = 0;
-        double promedioCosto;
-
+        double promedioCostos;
+       
         System.out.print("¿Cuántos productos ingresarán al lote?: ");
         cantidadProductos = sc.nextInt();
         sc.nextLine();
+
 
         while (contador <= cantidadProductos) {
 
@@ -28,11 +29,11 @@ public class App {
             costoProducto = sc.nextDouble();
             sc.nextLine();
 
-            if (costoProducto < 10000) {
+            if (costoProducto <= 10000) {
 
                 System.out.println("Categoría Baja");
 
-            } else if (costoProducto <= 50000) {
+            } else if (costoProducto >10000 && costoProducto <= 50000) {
 
                 System.out.println("Categoría Media");
 
@@ -42,10 +43,38 @@ public class App {
                 cantidadCategoriaAlta++;
             }
 
+            
             totalCostos = totalCostos + costoProducto;
 
+            
             contador++;
         }
 
+        
+        if (cantidadProductos > 0) {
+
+            promedioCostos = totalCostos / cantidadProductos;
+
+            
+            System.out.println("\n===== RESUMEN DEL LOTE =====");
+
+            System.out.printf("Costo total: $%.2f%n", totalCostos);
+            System.out.printf("Costo promedio: $%.2f%n",
+                    promedioCostos);
+
+            System.out.println(
+                    "Productos de categoría alta: "
+                    + cantidadCategoriaAlta
+            );
+
+        } else {
+            System.out.println("No se ingresaron productos.");
+        }
+
+    
+        sc.close();
+            
+        }
     }
-}
+
+       
